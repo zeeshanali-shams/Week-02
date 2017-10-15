@@ -1,18 +1,19 @@
 package com.ali.zeeshan.week02.impl;
 
-/**The package 'Sorter' has been imported to use its methods by the class 'BubbleSort'. 
+/**
+ * Package "com.ali.zeeshan.week02.iface" contains interface 'Sorter'.
  */
 import com.ali.zeeshan.week02.iface.Sorter;
 
 /**
- * This class contains methods for bubble sort algorithm
+ * Interface 'Sorter' has been implemented by the class 'BubbleSort'
  */
-public class BubbleSort {
+public class BubbleSort implements Sorter {
 	/**
-	 * This method is for putting the array in an ascending order
+	 * Method for sorting in ascending order.
 	 * 
 	 */
-	public int sortAscending(int arr[]) {
+	public void sortAscending(int arr[]) {
 		int n = arr.length;
 		for (int i = 0; i < n - 1; i++)
 			for (int j = 0; j < n - i - 1; j++)
@@ -22,15 +23,13 @@ public class BubbleSort {
 					arr[j + 1] = temp;
 				}
 
-		return 0;
-
 	}
 
 	/**
-	 * This method is for putting the array in an descending order
+	 * Method for sorting in descending order
 	 * 
 	 */
-	public int sortDescending(int arr[]) {
+	public void sortDescending(int arr[]) {
 		int n = arr.length;
 		for (int i = 0; i < n - 1; i++)
 			for (int j = 0; j < n - i - 1; j++)
@@ -39,7 +38,6 @@ public class BubbleSort {
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
 				}
-		return 0;
 
 	}
 
@@ -51,6 +49,7 @@ public class BubbleSort {
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
 		System.out.println("");
+		System.out.println("By bubble sort:-");
 		/**
 		 * Call for sortAscending method
 		 * 

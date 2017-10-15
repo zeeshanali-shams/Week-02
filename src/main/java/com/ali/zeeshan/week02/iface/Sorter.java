@@ -1,19 +1,19 @@
 package com.ali.zeeshan.week02.iface;
 
 /**
- * This interface has been created by the name Sorter as it cotains two methods
- * 'sortAscending' and 'sortDescending'.
+ * This interface represents a Sorter. It provides two methods to sort an
+ * integer in ascending or descending order.
  */
 public interface Sorter {
 
 	/**
-	 * This method will sort the array in ascending order.
+	 * Sorts in ascending order
 	 */
-	public int sortAscending();
+	public void sortAscending(int[] a);
 
 	/**
-	 * This method will sort the array in descending order.
+	 * Sorts in descending order
 	 */
-	public int sortDescending();
+	public void sortDescending(int[] a);
 
 }

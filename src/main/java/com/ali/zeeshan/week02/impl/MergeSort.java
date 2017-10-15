@@ -1,133 +1,120 @@
 package com.ali.zeeshan.week02.impl;
 
-/**The package 'Sorter' has been imported to use its methods by the class 'MergeSort'. 
+/**
+ * Package "com.ali.zeeshan.week02.iface" contains interface 'Sorter'.
  */
 import com.ali.zeeshan.week02.iface.Sorter;
 
 /**
- * This class contains methods for merge sort algorithm
+ * Interface 'Sorter' has been implemented by the class 'MergeSort'
  */
-public class MergeSort {
+public class MergeSort implements Sorter {
 
-	private void mergeAscending(int arr[], int l, int m, int r) {
+	private int[] arr;
+	private int[] temp;
+	private int length;
 
-		int n1 = m - l + 1;
-		int n2 = r - m;
-
-		int L[] = new int[n1];
-		int R[] = new int[n2];
-
-		for (int i = 0; i < n1; ++i)
-			L[i] = arr[l + i];
-		for (int j = 0; j < n2; ++j)
-			R[j] = arr[m + 1 + j];
-
-		int i = 0, j = 0;
-
-		int k = l;
-		while (i < n1 && j < n2) {
-			if (L[i] <= R[j]) {
-				arr[k] = L[i];
-				i++;
-			} else {
-				arr[k] = R[j];
-				j++;
-			}
-			k++;
-		}
-
-		while (i < n1) {
-			arr[k] = L[i];
-			i++;
-			k++;
-		}
-
-		while (j < n2) {
-			arr[k] = R[j];
-			j++;
-			k++;
-		}
-
-	}
-
-	private void mergeDescending(int arr[], int l, int m, int r) {
-
-		int n1 = m - l + 1;
-		int n2 = r - m;
-
-		int L[] = new int[n1];
-		int R[] = new int[n2];
-
-		for (int i = 0; i < n1; ++i)
-			L[i] = arr[l + i];
-		for (int j = 0; j < n2; ++j)
-			R[j] = arr[m + 1 + j];
-
-		int i = 0, j = 0;
-
-		int k = l;
-		while (i < n1 && j < n2) {
-			if (L[i] >= R[j]) {
-				arr[k] = L[i];
-				i++;
-			} else {
-				arr[k] = R[j];
-				j++;
-			}
-			k++;
-		}
-
-		while (i < n1) {
-			arr[k] = L[i];
-			i++;
-			k++;
-		}
-
-		while (j < n2) {
-			arr[k] = R[j];
-			j++;
-			k++;
-		}
+	/**
+	 * Method for sorting in ascending order.
+	 * 
+	 */
+	public void sortAscending(int[] a) {
+		this.arr = a;
+		this.length = a.length;
+		this.temp = new int[length];
+		doSortAscending(0, length - 1);
 
 	}
 
 	/**
-	 * This method is for putting the array in an ascending order
+	 * Method for sorting in descending order
 	 * 
 	 */
-	public int sortAscending(int arr[], int l, int r) {
-		if (l < r) {
-
-			int m = (l + r) / 2;
-			sortAscending(arr, l, m);
-			sortAscending(arr, m + 1, r);
-			mergeAscending(arr, l, m, r);
-
-		}
-
-		return 0;
+	public void sortDescending(int[] a) {
+		this.arr = a;
+		this.length = a.length;
+		this.temp = new int[length];
+		doSortDescending(0, length - 1);
 
 	}
 
-	/**
-	 * This method is for putting the array in an descending order
-	 * 
-	 */
-	public int sortDescending(int arr[], int l, int r) {
-		if (l < r) {
+	private void doSortAscending(int l, int h) {
 
-			int m = (l + r) / 2;
-			sortDescending(arr, l, m);
-			sortDescending(arr, m + 1, r);
-			mergeDescending(arr, l, m, r);
-
+		if (l < h) {
+			int middle = l + (h - l) / 2;
+			// Below step sorts the left side of the array
+			doSortAscending(l, middle);
+			// Below step sorts the right side of the array
+			doSortAscending(middle + 1, h);
+			// Now merge both sides
+			mergePartsAscending(l, middle, h);
 		}
+	}
 
-		return 0;
+	private void doSortDescending(int l, int h) {
+
+		if (l < h) {
+			int middle = l + (h - l) / 2;
+			// Below step sorts the left side of the array
+			doSortDescending(l, middle);
+			// Below step sorts the right side of the array
+			doSortDescending(middle + 1, h);
+			// Now merge both sides
+			mergePartsDescending(l, middle, h);
+		}
+	}
+
+	private void mergePartsAscending(int l, int m, int h) {
+
+		for (int i = l; i <= h; i++) {
+			temp[i] = arr[i];
+		}
+		int i = l;
+		int j = m + 1;
+		int k = l;
+		while (i <= m && j <= h) {
+			if (temp[i] <= temp[j]) {
+				arr[k] = temp[i];
+				i++;
+			} else {
+				arr[k] = temp[j];
+				j++;
+			}
+			k++;
+		}
+		while (i <= m) {
+			arr[k] = temp[i];
+			k++;
+			i++;
+		}
 
 	}
 
-	public static void main(String[] args) {
+	private void mergePartsDescending(int l, int m, int h) {
+		for (int i = l; i <= h; i++) {
+			temp[i] = arr[i];
+		}
+		int i = l;
+		int j = m + 1;
+		int k = l;
+		while (i <= m && j <= h) {
+			if (temp[i] >= temp[j]) {
+				arr[k] = temp[i];
+				i++;
+			} else {
+				arr[k] = temp[j];
+				j++;
+			}
+			k++;
+		}
+		while (i <= m) {
+			arr[k] = temp[i];
+			k++;
+			i++;
+		}
+	}
+
+	public static void main(String a[]) {
 		MergeSort ms = new MergeSort();
 		int arr[] = { 15, 36, 73, 10, 46, 24, 58, 79 };
 		int n = arr.length;
@@ -135,11 +122,12 @@ public class MergeSort {
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
 		System.out.println("");
+		System.out.println("By merge sort:-");
 		/**
 		 * Call for sortAscending method
 		 * 
 		 */
-		ms.sortAscending(arr, 0, arr.length - 1);
+		ms.sortAscending(arr);
 		System.out.print("The Ascending order is: ");
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
@@ -148,12 +136,10 @@ public class MergeSort {
 		 * Call for sortDescending method
 		 * 
 		 */
-
-		ms.sortDescending(arr, 0, arr.length - 1);
+		ms.sortDescending(arr);
 		System.out.print("The Descending order is: ");
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
-
 	}
 
 }
