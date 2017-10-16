@@ -28,8 +28,13 @@ public class BubbleSorter implements Sorter {
 	 */
 	public void sortDescending(int arr[]) {
 
+		int i = 0;
 		sortAscending(arr);
-
+		for (i = 0; i < arr.length / 2; i++) {
+			int temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -56,7 +61,7 @@ public class BubbleSorter implements Sorter {
 		 */
 		bs.sortDescending(arr);
 		System.out.print("The Descending order is: ");
-		for (int i = n - 1; i >= 0; --i)
+		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
 	}
 

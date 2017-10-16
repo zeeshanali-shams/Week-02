@@ -23,15 +23,6 @@ public class MergeSorter implements Sorter {
 
 	}
 
-	/**
-	 * Method for sorting in descending order
-	 * 
-	 */
-	public void sortDescending(int[] a) {
-		sortAscending(a);
-
-	}
-
 	private void doSortAscending(int l, int h) {
 
 		if (l < h) {
@@ -71,6 +62,21 @@ public class MergeSorter implements Sorter {
 
 	}
 
+	/**
+	 * Method for sorting in descending order
+	 * 
+	 */
+	public void sortDescending(int[] a) {
+		int i = 0;
+		sortAscending(arr);
+		for (i = 0; i < arr.length / 2; i++) {
+			int temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+		}
+
+	}
+
 	public static void main(String a[]) {
 		MergeSorter ms = new MergeSorter();
 		int arr[] = { 15, 36, 73, 10, 46, 24, 58, 79 };
@@ -95,7 +101,7 @@ public class MergeSorter implements Sorter {
 		 */
 		ms.sortDescending(arr);
 		System.out.print("The Descending order is: ");
-		for (int i = n - 1; i >= 0; --i)
+		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + ", ");
 	}
 
