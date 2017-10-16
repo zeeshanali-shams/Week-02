@@ -1,14 +1,11 @@
 package com.ali.zeeshan.week02.impl;
 
-/**
- * Package "com.ali.zeeshan.week02.iface" contains interface 'Sorter'.
- */
 import com.ali.zeeshan.week02.iface.Sorter;
 
 /**
- * Interface 'Sorter' has been implemented by the class 'BubbleSort'
+ * BubbleSorter uses bubble sort algorithm.
  */
-public class BubbleSort implements Sorter {
+public class BubbleSorter implements Sorter {
 	/**
 	 * Method for sorting in ascending order.
 	 * 
@@ -30,19 +27,13 @@ public class BubbleSort implements Sorter {
 	 * 
 	 */
 	public void sortDescending(int arr[]) {
-		int n = arr.length;
-		for (int i = 0; i < n - 1; i++)
-			for (int j = 0; j < n - i - 1; j++)
-				if (arr[j] < arr[j + 1]) {
-					int temp = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = temp;
-				}
+
+		sortAscending(arr);
 
 	}
 
 	public static void main(String[] args) {
-		BubbleSort bs = new BubbleSort();
+		BubbleSorter bs = new BubbleSorter();
 		int arr[] = { 15, 36, 73, 10, 46, 24, 58, 79 };
 		int n = arr.length;
 		System.out.print("Given Array: ");
@@ -65,7 +56,7 @@ public class BubbleSort implements Sorter {
 		 */
 		bs.sortDescending(arr);
 		System.out.print("The Descending order is: ");
-		for (int i = 0; i < n; ++i)
+		for (int i = n - 1; i >= 0; --i)
 			System.out.print(arr[i] + ", ");
 	}
 
