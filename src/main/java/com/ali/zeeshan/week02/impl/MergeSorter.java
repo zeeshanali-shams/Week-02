@@ -1,11 +1,9 @@
 package com.ali.zeeshan.week02.impl;
 
-import com.ali.zeeshan.week02.iface.Sorter;
-
 /**
- * MergeSorter uses merge sort algorithm.
+ * MergeSorter uses merge sort algorithm. MergeSorter inherits ArrayPrinter.
  */
-public class MergeSorter implements Sorter {
+public class MergeSorter extends ArrayPrinter {
 
 	private int[] arr;
 	private int[] temp;
@@ -27,11 +25,8 @@ public class MergeSorter implements Sorter {
 
 		if (l < h) {
 			int middle = l + (h - l) / 2;
-			// Below step sorts the left side of the array
 			doSortAscending(l, middle);
-			// Below step sorts the right side of the array
 			doSortAscending(middle + 1, h);
-			// Now merge both sides
 			mergePartsAscending(l, middle, h);
 		}
 	}
@@ -67,42 +62,16 @@ public class MergeSorter implements Sorter {
 	 * 
 	 */
 	public void sortDescending(int[] a) {
-		int i = 0;
-		sortAscending(arr);
-		for (i = 0; i < arr.length / 2; i++) {
-			int temp = arr[i];
-			arr[i] = arr[arr.length - 1 - i];
-			arr[arr.length - 1 - i] = temp;
-		}
 
+		sortAscending(a);
+		reverseArray(a);
 	}
 
-	public static void main(String a[]) {
+	public static void main(String[] args) {
 		MergeSorter ms = new MergeSorter();
+		System.out.println("MERGE SORT");
 		int arr[] = { 15, 36, 73, 10, 46, 24, 58, 79 };
-		int n = arr.length;
-		System.out.print("Given Array: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
-		System.out.println("");
-		System.out.println("By merge sort:-");
-		/**
-		 * Call for sortAscending method
-		 * 
-		 */
-		ms.sortAscending(arr);
-		System.out.print("The Ascending order is: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
-		System.out.println("");
-		/**
-		 * Call for sortDescending method
-		 * 
-		 */
-		ms.sortDescending(arr);
-		System.out.print("The Descending order is: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
+		ms.printArray(arr);
 	}
 
 }

@@ -1,11 +1,9 @@
 package com.ali.zeeshan.week02.impl;
 
-import com.ali.zeeshan.week02.iface.Sorter;
-
 /**
- * BubbleSorter uses bubble sort algorithm.
+ * BubbleSorter uses bubble sort algorithm. BubbleSorter inherits ArrayPrinter.
  */
-public class BubbleSorter implements Sorter {
+public class BubbleSorter extends ArrayPrinter {
 	/**
 	 * Method for sorting in ascending order.
 	 * 
@@ -28,41 +26,15 @@ public class BubbleSorter implements Sorter {
 	 */
 	public void sortDescending(int arr[]) {
 
-		int i = 0;
 		sortAscending(arr);
-		for (i = 0; i < arr.length / 2; i++) {
-			int temp = arr[i];
-			arr[i] = arr[arr.length - 1 - i];
-			arr[arr.length - 1 - i] = temp;
-		}
+		reverseArray(arr);
 	}
 
 	public static void main(String[] args) {
 		BubbleSorter bs = new BubbleSorter();
+		System.out.println("BUBBLE SORT");
 		int arr[] = { 15, 36, 73, 10, 46, 24, 58, 79 };
-		int n = arr.length;
-		System.out.print("Given Array: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
-		System.out.println("");
-		System.out.println("By bubble sort:-");
-		/**
-		 * Call for sortAscending method
-		 * 
-		 */
-		bs.sortAscending(arr);
-		System.out.print("The Ascending order is: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
-		System.out.println("");
-		/**
-		 * Call for sortDescending method
-		 * 
-		 */
-		bs.sortDescending(arr);
-		System.out.print("The Descending order is: ");
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + ", ");
+		bs.printArray(arr);
 	}
 
 }

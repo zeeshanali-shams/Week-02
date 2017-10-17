@@ -9,11 +9,22 @@ public interface Sorter {
 	/**
 	 * Sorts in ascending order
 	 */
-	public void sortAscending(int[] a);
+	public void sortAscending(int[] arr);
 
 	/**
 	 * Sorts in descending order
 	 */
-	public void sortDescending(int[] a);
+	public void sortDescending(int[] arr);
 
+	/**
+	 * Prints the array
+	 * 
+	 */
+	public void printArray(int[] arr);
+
+	/**
+	 * Reverses the array
+	 * 
+	 */
+	public void reverseArray(int[] arr);
 }
